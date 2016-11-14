@@ -154,6 +154,9 @@ namespace verkeersbordDetectie
                     }
 
                 }
+                else {
+                    return null;
+                }
                 #endregion
                 return result;
             }

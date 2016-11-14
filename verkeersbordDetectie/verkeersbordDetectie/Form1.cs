@@ -20,26 +20,52 @@ namespace verkeersbordDetectie
 {
     public partial class Form1 : Form
     {
+        private List<string> imageUrls = new List<string>();
+        private List<string> filenames = new List<string>();
+
         public Form1()
         {
             InitializeComponent();
-            Mat matInputImage = CvInvoke.Imread(@"C:\Users\Anthony\Desktop\NMCT\3NMCT\Audio & Visual Productions\Project\verkeersbordDetectie\Images\verkeersborden.jpg", LoadImageType.AnyColor);
-            //Mat verkeersbord_Stop = CvInvoke.Imread(@"C:\Users\Anthony\Desktop\NMCT\3NMCT\Audio & Visual Productions\Project\verkeersbordDetectie\Images\Stop.png", LoadImageType.AnyColor);
-            //Mat verkeersbord_Stop;
+            Mat matInputImage = CvInvoke.Imread(@"C:\Users\Anthony\Desktop\NMCT\3NMCT\Audio & Visual Productions\Project\verkeersbordDetectie\Images\verkeersborden1.jpg", LoadImageType.AnyColor);
 
-            long _matchTime;
-
-            //TraficSignDetector.FindMatch(matImage, matInputImage, out _matchTime, out _modelkeyPoints, out _observedKeyPoints, _matches, out _mask, out _homography);
-            //Mat outputImage = TraficSignDetector.Draw(verkeersbord_Stop, matInputImage, out _matchTime);
-
-            //imageBox1.Image = outputImage;
             Verkeersborden();
+            ZoekVerkeersbordenOpImg(matInputImage);
         }
+        private void ZoekVerkeersbordenOpImg(Mat matInputImage)
+        {
+            long _matchTime;
+            Mat verkeersbord = CvInvoke.Imread(@"C:\Users\Anthony\Desktop\NMCT\3NMCT\Audio & Visual Productions\Project\verkeersbordDetectie\Images\Verkeersborden\D1aro.png", LoadImageType.AnyColor);
+            Mat outputImage = TraficSignDetector.Draw(verkeersbord, matInputImage, out _matchTime);
+            imageBox1.Image = outputImage;
 
+            /*Mat verkeersbord = new Mat();
+            Mat outputImage = new Mat();
+            List<string> gevondenVerkeersborden = new List<string>();
+
+            for (int i = 0; i < 149; i++)
+            {
+                try
+                {
+                    long _matchTime;
+                    verkeersbord = CvInvoke.Imread(@"C:\Users\Anthony\Desktop\NMCT\3NMCT\Audio & Visual Productions\Project\verkeersbordDetectie\Images\Verkeersborden\" + filenames[i], LoadImageType.AnyColor);
+                    outputImage = TraficSignDetector.Draw(verkeersbord, matInputImage, out _matchTime);
+
+                    if (outputImage != null)
+                    {
+                        gevondenVerkeersborden.Add(filenames[i]);
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            imageBox1.Image = outputImage;*/
+        }
         private void Verkeersborden()
         {
-            List<string> imageUrls = TraficSignboards.getImageUrls();
-            List<string> filenames = TraficSignboards.getFilenames();
+            imageUrls = TraficSignboards.getImageUrls();
+            filenames = TraficSignboards.getFilenames();
             int l = imageUrls.Count;
             for (int i = 0; i < l; i++)
             {
