@@ -38,6 +38,7 @@
             this.imageBox1.Location = new System.Drawing.Point(13, 13);
             this.imageBox1.Name = "imageBox1";
             this.imageBox1.Size = new System.Drawing.Size(259, 195);
+            this.imageBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageBox1.TabIndex = 2;
             this.imageBox1.TabStop = false;
             // 
@@ -51,7 +52,6 @@
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion
