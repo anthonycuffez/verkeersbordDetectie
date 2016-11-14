@@ -27,15 +27,18 @@ namespace verkeersbordDetectie
         {
             InitializeComponent();
             Mat matInputImage = CvInvoke.Imread(@"C:\Users\Anthony\Desktop\NMCT\3NMCT\Audio & Visual Productions\Project\verkeersbordDetectie\Images\verkeersborden1.jpg", LoadImageType.AnyColor);
-
+            Mat matInputGrayImage = new Mat();
+            CvInvoke.CvtColor(matInputImage, matInputGrayImage, ColorConversion.Bgr2Gray);
             Verkeersborden();
-            ZoekVerkeersbordenOpImg(matInputImage);
+            ZoekVerkeersbordenOpImg(matInputGrayImage);
         }
         private void ZoekVerkeersbordenOpImg(Mat matInputImage)
         {
             long _matchTime;
             Mat verkeersbord = CvInvoke.Imread(@"C:\Users\Anthony\Desktop\NMCT\3NMCT\Audio & Visual Productions\Project\verkeersbordDetectie\Images\Verkeersborden\D1aro.png", LoadImageType.AnyColor);
-            Mat outputImage = TraficSignDetector.Draw(verkeersbord, matInputImage, out _matchTime);
+            Mat verkeersbordGray = new Mat();
+            CvInvoke.CvtColor(verkeersbord, verkeersbordGray, ColorConversion.Bgr2Gray);
+            Mat outputImage = TraficSignDetector.Draw(verkeersbordGray, matInputImage, out _matchTime);
             imageBox1.Image = outputImage;
 
             /*Mat verkeersbord = new Mat();
