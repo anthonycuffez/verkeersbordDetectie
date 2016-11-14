@@ -130,8 +130,7 @@ namespace verkeersbordDetectie
 
                 //Draw the matched keypoints
                 Mat result = new Mat();
-                Features2DToolbox.DrawMatches(modelImage, modelKeyPoints, observedImage, observedKeyPoints,
-                   matches, result, new MCvScalar(255, 255, 255), new MCvScalar(255, 255, 255), mask);
+                Features2DToolbox.DrawMatches(modelImage, modelKeyPoints, observedImage, observedKeyPoints, matches, result, new MCvScalar(255, 255, 255), new MCvScalar(255, 255, 255), mask);
 
                 #region draw the projected region on the image
 
@@ -155,11 +154,8 @@ namespace verkeersbordDetectie
                     }
 
                 }
-
                 #endregion
-
                 return result;
-
             }
         }
     }
